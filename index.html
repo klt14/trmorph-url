@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TrMorph</title>
+  </head>
+  <body>
+    <div id="result"></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const resultDiv = document.getElementById('result');
+      const queryString = window.location.search.substring(1);
+      fetch('http://coltekin.net/cagri/trmorph/index.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: queryString,
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            throw new Error('Network response was not ok.');
+          }
+        })
+        .then(data => {
+          console.log(data);
+          resultDiv.innerHTML = data;
+          let result = document.querySelector("#result > div > div:nth-child(3) > div > div.panel-body > table > tbody > tr > td.trmorph-demo-result");
+          resultDiv.innerHTML = result.innerHTML.replace(/trmorph-manual.pdf/g, 'http://coltekin.net/cagri/trmorph/trmorph-manual.pdf');  ;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
+
+
+    </script>
+  </body>
+</html>

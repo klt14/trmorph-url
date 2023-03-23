@@ -24,7 +24,6 @@
           }
         })
         .then(data => {
-          console.log(data);
           resultDiv.innerHTML = data;
           let result = document.querySelector("#result > div > div:nth-child(3) > div > div.panel-body > table > tbody > tr > td.trmorph-demo-result");
           resultDiv.innerHTML = result.innerHTML.replace(/trmorph-manual.pdf/g, 'http://coltekin.net/cagri/trmorph/trmorph-manual.pdf');  ;
